@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choose a Game</title>
   <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Sakura / Rio de Janeiro Theme */
+    [data-theme="sakura"] {
+      --bg: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #7f7fd5 100%);
+      --card: rgba(255, 255, 255, 0.15);
+      --text: #ffffff;
+      --muted: #ffeef2;
+      --border: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Midnight Blue Theme */
+    [data-theme="midnight"] {
+      --bg: #030712;
+      --card: #111827;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
+      background: var(--bg);
+      background-attachment: fixed;
+      color: var(--text);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -16,6 +43,28 @@
       height: 100vh;
       margin: 0;
       padding: 16px;
+      transition: background 0.4s ease;
+    }
+
+    /* Theme Switcher Selector */
+    .theme-selector {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+    .theme-selector option {
+      background: #0f172a;
+      color: white;
     }
 
     h1 {
@@ -23,6 +72,7 @@
       font-size: 2rem;
       letter-spacing: -0.5px;
       text-align: center;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
     .btn-container {
@@ -46,6 +96,7 @@
       border-radius: 16px;
       transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
     }
 
     a.button:hover {
@@ -80,6 +131,13 @@
 </head>
 <body>
 
+  <!-- Theme Dropdown -->
+  <select id="themeSelect" class="theme-selector">
+    <option value="dark">🌙 Classic Dark</option>
+    <option value="sakura">🌸 Sakura (Rio Sunset)</option>
+    <option value="midnight">🌌 Midnight Blue</option>
+  </select>
+
   <h1>Choose a Game</h1>
   
   <div class="btn-container">
@@ -103,6 +161,23 @@
       <span>Wavy</span>
     </a>
   </div>
+
+  <script>
+    const themeSelect = document.getElementById('themeSelect');
+    const htmlElement = document.documentElement;
+
+    // Load saved theme preference if available
+    const savedTheme = localStorage.getItem('site_theme') || 'dark';
+    htmlElement.setAttribute('data-theme', savedTheme);
+    themeSelect.value = savedTheme;
+
+    // Change theme on selection and save to browser storage
+    themeSelect.onchange = (e) => {
+      const selectedTheme = e.target.value;
+      htmlElement.setAttribute('data-theme', selectedTheme);
+      localStorage.setItem('site_theme', selectedTheme);
+    };
+  </script>
 
 </body>
 </html>
