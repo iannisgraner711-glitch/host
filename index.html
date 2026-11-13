@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choose a Site</title>
+  <title>Choose a Game</title>
   <style>
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
@@ -15,35 +15,93 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
+      padding: 16px;
     }
-    h1 { margin-bottom: 24px; font-size: 1.8rem; }
+
+    h1 {
+      margin-bottom: 28px;
+      font-size: 2rem;
+      letter-spacing: -0.5px;
+      text-align: center;
+    }
+
     .btn-container {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
       width: 100%;
-      max-width: 300px;
+      max-width: 320px;
     }
+
     a.button {
-      padding: 16px;
-      background: #38bdf8;
-      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 18px 24px;
       text-decoration: none;
-      font-weight: bold;
-      border-radius: 12px;
-      text-align: center;
-      transition: background 0.2s;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.5px;
+      border-radius: 16px;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
-    a.button:hover { background: #0284c7; color: white; }
+
+    a.button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    a.button:active {
+      transform: scale(0.98);
+    }
+
+    /* UNO Button Styling */
+    .btn-uno {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #ffffff;
+      border: 2px solid #f87171;
+    }
+
+    /* Wavy Button Styling */
+    .btn-wavy {
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      color: #0f172a;
+      border: 2px solid #7dd3fc;
+    }
+
+    svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Where would you like to go?</h1>
+  <h1>Choose a Game</h1>
   
   <div class="btn-container">
-    <a href="uno-ug.onrender.com" class="button">Go to Site 1</a>
-    <a href="wavy-qpvo.onrender.com" class="button">Go to Site 2</a>
+    <!-- UNO Button -->
+    <a href="https://your-uno-site-link.com" class="button btn-uno">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="5" width="11" height="16" rx="2" transform="rotate(-12 9.5 13)" fill="rgba(255,255,255,0.2)"/>
+        <rect x="9" y="3" width="11" height="16" rx="2" transform="rotate(8 14.5 11)" fill="rgba(255,255,255,0.35)"/>
+        <ellipse cx="14.5" cy="11" rx="3.5" ry="5" transform="rotate(25 14.5 11)" stroke="#fde047" stroke-width="2"/>
+      </svg>
+      <span>UNO</span>
+    </a>
+
+    <!-- Wavy Button -->
+    <a href="https://your-wavy-site-link.com" class="button btn-wavy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+        <path d="M2 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+        <path d="M2 20c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+      </svg>
+      <span>Wavy</span>
+    </a>
   </div>
 
 </body>
